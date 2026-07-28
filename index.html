@@ -97,12 +97,14 @@ tr:hover { background:#fdfaf8; }
 
 
 
+
   <div class="grp">新增专题</div>
   <a href="#s-portrait">用户画像</a>
   <a href="#s-priceband">价格带诊断</a>
   <a href="#s-tbtier">淘宝分层×标签</a>
   <a href="#s-porlf">画像叶子下钻</a>
   <a href="#s-pblf">价格带叶子下钻</a>
+  <a href="#s-topics">核心讨论议题</a>
 </div>
 <div class="main">
 <div class="header">
@@ -475,6 +477,9 @@ document.querySelectorAll('.section,.band').forEach(s=>{if(s.id)obs.observe(s);}
 
 
 
+
+
+
 /* ============ NEW: portraits / price band / tier ============ */
 (function(){
   const app=document.getElementById('app');
@@ -678,6 +683,26 @@ document.querySelectorAll('.section,.band').forEach(s=>{if(s.id)obs.observe(s);}
       });
       new Chart(document.getElementById('pblf_'+pk),{type:'bar',data:{labels:bands,datasets},options:{maintainAspectRatio:false,plugins:{datalabels:{display:false},legend:{position:'top'},title:{display:true,text:'各叶子在各价格带的GMV占比(%)'}},scales:{y:{title:{display:true,text:'占叶子自身GMV(%)'}}}}});
     });
+  }
+
+  // ---- 后续核心讨论议题（待共创）----
+  {
+    const topics=[
+      ['1. 全渠道价格治理与统一定价（含京东集采）','共创海康威视整体品牌价格设计方案，保证不被其他平台破价，或建立维护价格统一的策略（包括京东集采）。关联：淘宝非标签盘占44.1%GMV、可控性差，0-100元低价段与产业带白牌重叠；天猫以500元以上高端带为主（73.3%），跨平台价盘不一致侵蚀品牌溢价。'],
+      ['2. 平台核心活动的长期参与机制','前N、店铺红包、消费券等平台核心活动玩法，能否设计长期机制保证核心商家（T8旗舰、T5-T7标签专卖）稳定参与，避免大促脉冲后GMV回落（淘宝整体核心锁-20.5%）。'],
+      ['3. 线上品类拓展规划（非视频品类）','能否将道闸、楼宇对讲等非视频品类放到线上渠道售卖（如淘宝店），承接专业工程与B端小微需求，与天猫家用摄像头错位互补。需评估需求容量、履约安装与线下渠道协同。'],
+      ['4. 滞销与翻新货品专有渠道','探讨滞销、翻新货品专有渠道销售的可能性，在不冲击主力价格体系与品牌调性前提下完成库存周转，需做入口隔离、价盘隔离与资质售后标准。'],
+      ['5. 子品牌皓视通的未来规划','明确皓视通与海康主品牌、萤石在价格带、人群与场景上的区隔，在差异化价格带与人群包上找到独立增长位，避免内部互搏。'],
+      ['6. 日常场域精细化运营','焕新补、对公支付、会员、新品试销、百补、秒杀等常态化玩法的组合与节奏设计，围绕非大促期稳定增长，形成大促与日销双轮驱动。'],
+    ];
+    let html=sec('s-topics','T','后续核心讨论议题（待共创）',
+      '以下六项为下阶段需与品牌方共创、待落地的核心议题，基于本次H1复盘的量价结构、渠道分化与价格带诊断结论提出。<b>本节为讨论议程与方向性判断，非取数结论</b>。');
+    html+='<div class="conclusion"><b>说明</b>：本节列出的议题供专题会逐项对齐、拆解落地路径，不涉及任何数据编造；其中引用的占比/同比数字均来自本报告前序章节的真实取数。</div>';
+    topics.forEach(t=>{
+      html+='<div style="margin:12px 0;padding:12px 16px;background:#fff7f2;border-left:4px solid #ff6b35;border-radius:6px;"><div style="font-weight:700;color:#e8590c;font-size:15px;margin-bottom:6px;">'+t[0]+'</div><div style="color:#333;line-height:1.7;">'+t[1]+'</div></div>';
+    });
+    html+='</div>';
+    app.appendChild(h(html));
   }
 
 })();
